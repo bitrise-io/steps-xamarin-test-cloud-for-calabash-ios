@@ -18,7 +18,6 @@ end
 #
 # Input validation
 options = {
-  features: nil,
   ipa_path: nil,
   dsym_path: nil,
   api_key: nil,
@@ -31,7 +30,6 @@ options = {
 
 parser = OptionParser.new do|opts|
   opts.banner = 'Usage: step.rb [options]'
-  opts.on('-a', '--feautes calabash', 'Calabash features') { |a| options[:features] = a unless a.to_s == '' }
   opts.on('-c', '--api key', 'API key') { |c| options[:api_key] = c unless c.to_s == '' }
   opts.on('-b', '--user user', 'User') { |b| options[:user] = b unless b.to_s == '' }
   opts.on('-d', '--devices devices', 'Devices') { |d| options[:devices] = d unless d.to_s == '' }
@@ -46,7 +44,6 @@ parser = OptionParser.new do|opts|
 end
 parser.parse!
 
-fail_with_message('No features folder found') unless options[:features] && File.exist?(options[:features])
 fail_with_message('No ipa found') unless options[:ipa_path] && File.exist?(options[:ipa_path])
 fail_with_message('api_key not specified') unless options[:api_key]
 fail_with_message('user not specified') unless options[:user]
@@ -56,7 +53,6 @@ fail_with_message('devices not specified') unless options[:devices]
 # Print configs
 puts
 puts '========== Configs =========='
-puts " * features: #{options[:features]}"
 puts " * ipa_path: #{options[:ipa_path]}"
 puts " * dsym_path: #{options[:dsym_path]}"
 puts ' * api_key: ***'
@@ -66,24 +62,41 @@ puts " * async: #{options[:async]}"
 puts " * series: #{options[:series]}"
 puts " * other_parameters: #{options[:other_parameters]}"
 
+# Check if there is a Gemfile in the directory
+gemfile_detected = File.exists? "Gemfile"
+
+if gemfile_detected
+  puts
+  puts "bundle install"
+  system("bundle install")
+else
+  puts "gem install calabash-cucumber"
+  system("gem install calabash-cucumber")
+
+  puts "gem install xamarin-test-cloud"
+  system("gem install xamarin-test-cloud")
+end
+
 #
 # Build Request
-request = "test-cloud submit #{options[:ipa_path]} #{options[:api_key]}"
-request += " --user #{options[:user]}"
-request += " --devices #{options[:devices]}"
-request += ' --async' if options[:async]
-request += " --series #{options[:series]}" if options[:series]
-request += " --dsym-file #{options[:dsym_path]}" if options[:dsym_path]
-request += " #{options[:other_parameters]}" if options[:other_parameters]
+test_cloud_cmd = []
+test_cloud_cmd << "bundle exec" if gemfile_detected
+test_cloud_cmd << "test-cloud submit \"#{options[:ipa_path]}\""
+test_cloud_cmd << options[:api_key]
+test_cloud_cmd << "--user=#{options[:user]}"
+test_cloud_cmd << "--devices=#{options[:devices]}"
+test_cloud_cmd << '--async' if options[:async]
+test_cloud_cmd << "--series=#{options[:series]}" if options[:series]
+test_cloud_cmd << "--dsym-file #{options[:dsym_path]}" if options[:dsym_path]
+test_cloud_cmd << options[:other_parameters] if options[:other_parameters]
+
+test_cloud_cmd_copy = test_cloud_cmd.dup
+test_cloud_cmd_copy[gemfile_detected ? 2 : 1] = "***"
 
 puts
-puts "request: #{request}"
-
-base_directory = File.dirname(options[:features])
-Dir.chdir(base_directory) do
-  system(request)
-  fail_with_message('test-cloud -- failed') unless $?.success?
-end
+puts test_cloud_cmd_copy.join(" ")
+system(test_cloud_cmd.join(" "))
+fail_with_message('test-cloud -- failed') unless $?.success?
 
 puts
 puts '(i) The result is: succeeded'
