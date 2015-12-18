@@ -1,9 +1,9 @@
 title: Submit calabash ios test to Xamarin Test Cloud
 summary: Submit calabash ios test to Xamarin Test Cloud
 description: Submit calabash ios test to Xamarin Test Cloud
-website: https://github.com/godrei/steps-xamarin-test-cloud-for-calabash-ios
-source_code_url: https://github.com/godrei/steps-xamarin-test-cloud-for-calabash-ios
-support_url: https://github.com/godrei/steps-xamarin-test-cloud-for-calabash-ios/issues
+website: https://github.com/bitrise-steplib/steps-xamarin-test-cloud-for-calabash-ios
+source_code_url: https://github.com/bitrise-steplib/steps-xamarin-test-cloud-for-calabash-ios
+support_url: https://github.com/bitrise-steplib/steps-xamarin-test-cloud-for-calabash-ios/issues
 host_os_tags:
   - osx-10.10
 project_type_tags:
@@ -23,13 +23,13 @@ inputs:
         Path to Calabash features folder
       is_required: true
       is_expand: true
-  - ipa_path:
+  - ipa_path: $BITRISE_IPA_PATH
     opts:
       title: IPA path
       description: IPA path
       is_required: true
       is_expand: true
-  - dsym_path:
+  - dsym_path: $BITRISE_DSYM_PATH
     opts:
       title: dSYM path
       description: dSYM path
@@ -113,5 +113,5 @@ outputs:
       - failed
   - BITRISE_XAMARIN_TEST_FULL_RESULTS_TEXT:
     opts:
-      title: ""
+      title: Result of the tests.
       description: ""
