@@ -16,13 +16,6 @@ is_skippable: false
 dependencies: []
 run_if: ""
 inputs:
-  - calabash_features:
-    opts:
-      title: Path to Calabash features folder
-      description: |
-        Path to Calabash features folder
-      is_required: true
-      is_expand: true
   - ipa_path: $BITRISE_IPA_PATH
     opts:
       title: IPA path

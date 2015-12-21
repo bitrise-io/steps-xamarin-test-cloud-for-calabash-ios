@@ -23,7 +23,6 @@ workflows:
           but the step would use the default value specified in the `step.yml`
           file if you would not specify another value.
         inputs:
-        - calabash_features: $CALABASH_FEATURES
         - ipa_path: $IPA_PATH
         - dsym_path: $DSYM_PATH
         - xamarin_user: $USER
