@@ -1,6 +1,6 @@
-title: Submit calabash ios test to Xamarin Test Cloud
-summary: Submit calabash ios test to Xamarin Test Cloud
-description: Submit calabash ios test to Xamarin Test Cloud
+title: Submit Calabash iOS test to Xamarin Test Cloud
+summary: Submit Calabash iOS test to Xamarin Test Cloud step
+description: Submit Calabash iOS test to Xamarin Test Cloud step
 website: https://github.com/bitrise-steplib/steps-xamarin-test-cloud-for-calabash-ios
 source_code_url: https://github.com/bitrise-steplib/steps-xamarin-test-cloud-for-calabash-ios
 support_url: https://github.com/bitrise-steplib/steps-xamarin-test-cloud-for-calabash-ios/issues
