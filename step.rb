@@ -63,24 +63,38 @@ puts " * series: #{options[:series]}"
 puts " * other_parameters: #{options[:other_parameters]}"
 
 # Check if there is a Gemfile in the directory
-gemfile_detected = File.exists? "Gemfile"
+gemfile_detected = File.exist? 'Gemfile'
+
+calabash_cucumber_gem_detected = false
+xamarin_test_cloud_gem_detected = false
 
 if gemfile_detected
-  puts
-  puts "bundle install"
-  system("bundle install")
-else
-  puts "gem install calabash-cucumber"
-  system("gem install calabash-cucumber")
+  File.open('Gemfile', 'r') do |f|
+    f.each_line do |line|
+      calabash_cucumber_gem_detected = true if line.downcase.include? 'calabash-cucumber'
+      xamarin_test_cloud_gem_detected = true if line.downcase.include? 'xamarin-test-cloud'
+    end
+  end
+end
 
-  puts "gem install xamarin-test-cloud"
-  system("gem install xamarin-test-cloud")
+if calabash_cucumber_gem_detected && xamarin_test_cloud_gem_detected
+  puts 'bundle install'
+  system('bundle install')
+else
+  puts 'Gemfile found, but no calabash-cucumber and/or xamarin-test-cloud gem specified' if gemfile_detected
+  puts 'Installing missings gems'
+
+  puts 'gem install calabash-cucumber'
+  system('gem install calabash-cucumber')
+
+  puts 'gem install xamarin-test-cloud'
+  system('gem install xamarin-test-cloud')
 end
 
 #
 # Build Request
 test_cloud_cmd = []
-test_cloud_cmd << "bundle exec" if gemfile_detected
+test_cloud_cmd << 'bundle exec' if gemfile_detected
 test_cloud_cmd << "test-cloud submit \"#{options[:ipa_path]}\""
 test_cloud_cmd << options[:api_key]
 test_cloud_cmd << "--user=#{options[:user]}"
