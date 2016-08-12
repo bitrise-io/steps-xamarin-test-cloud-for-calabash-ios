@@ -1,6 +1,13 @@
-## Changelog (Current version: 0.9.3)
+## Changelog (Current version: 0.9.4)
 
 -----------------
+
+### 0.9.4 (2016 Aug 12)
+
+* [b498d1a] gitignore
+* [05df97e] prepare for 0.9.4
+* [4263189] Merge pull request #9 from bitrise-steplib/update
+* [67cb7f6] ensure required gems
 
 ### 0.9.3 (2016 Jun 27)
 
@@ -20,4 +27,4 @@
 
 -----------------
 
-Updated: 2016 Jun 27
+Updated: 2016 Aug 12
