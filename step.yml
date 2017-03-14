@@ -89,7 +89,3 @@ outputs:
       value_options:
       - succeeded
       - failed
-  - BITRISE_XAMARIN_TEST_FULL_RESULTS_TEXT:
-    opts:
-      title: Result of the tests.
-      description: ""

@@ -84,6 +84,8 @@ else
   puts 'Gemfile found, but no calabash-cucumber and/or xamarin-test-cloud gem specified' if gemfile_detected
   puts 'Installing missings gems'
 
+  gemfile_detected = false
+
   puts 'gem install calabash-cucumber'
   system('gem install calabash-cucumber')
 
