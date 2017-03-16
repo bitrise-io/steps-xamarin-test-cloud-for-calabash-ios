@@ -1,6 +1,13 @@
-## Changelog (Current version: 0.9.4)
+## Changelog (Current version: 1.0.0)
 
 -----------------
+
+### 1.0.0 (2017 Mar 16)
+
+* [e287988] Merge pull request #11 from bitrise-steplib/update
+* [617890d] install certificates
+* [f8895a1] go toolkit support
+* [3bfec67] bundle exec fix
 
 ### 0.9.4 (2016 Aug 12)
 
@@ -27,4 +34,4 @@
 
 -----------------
 
-Updated: 2016 Aug 12
+Updated: 2017 Mar 16
