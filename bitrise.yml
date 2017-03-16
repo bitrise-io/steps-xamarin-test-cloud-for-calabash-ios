@@ -44,6 +44,7 @@ workflows:
         - branch: "master"
         - pull_request_id: ""
         - clone_depth: ""
+    - certificate-and-profile-installer:
     - nuget-restore:
     - xamarin-archive:
         inputs:
