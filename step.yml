@@ -40,9 +40,7 @@ inputs:
       description: |
         Path to the Gemfile which contains calabash-cucumber gem.
 
-        If Gemfile not exist or does not contain calabash-cucumber gem:
-
-        - if `calabash_cucumber_version` input not specified, latest version will be used
+        If Gemfile not exist or does not contain calabash-cucumber gem: latest version will be used
   - ipa_path: $BITRISE_IPA_PATH
     opts:
       title: IPA path
