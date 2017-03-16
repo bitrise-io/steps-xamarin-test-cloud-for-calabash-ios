@@ -1,0 +1,42 @@
+{
+	"ImportPath": "github.com/bitrise-steplib/steps-xamarin-test-cloud-for-calabash-ios",
+	"GoVersion": "go1.8",
+	"GodepVersion": "v79",
+	"Packages": [
+		"./..."
+	],
+	"Deps": [
+		{
+			"ImportPath": "github.com/bitrise-io/go-utils/colorstring",
+			"Rev": "477d758d7497458ddbec25bec4a8d107bbe0404d"
+		},
+		{
+			"ImportPath": "github.com/bitrise-io/go-utils/command",
+			"Rev": "477d758d7497458ddbec25bec4a8d107bbe0404d"
+		},
+		{
+			"ImportPath": "github.com/bitrise-io/go-utils/command/rubycommand",
+			"Rev": "477d758d7497458ddbec25bec4a8d107bbe0404d"
+		},
+		{
+			"ImportPath": "github.com/bitrise-io/go-utils/errorutil",
+			"Rev": "477d758d7497458ddbec25bec4a8d107bbe0404d"
+		},
+		{
+			"ImportPath": "github.com/bitrise-io/go-utils/fileutil",
+			"Rev": "477d758d7497458ddbec25bec4a8d107bbe0404d"
+		},
+		{
+			"ImportPath": "github.com/bitrise-io/go-utils/log",
+			"Rev": "477d758d7497458ddbec25bec4a8d107bbe0404d"
+		},
+		{
+			"ImportPath": "github.com/bitrise-io/go-utils/pathutil",
+			"Rev": "477d758d7497458ddbec25bec4a8d107bbe0404d"
+		},
+		{
+			"ImportPath": "github.com/kballard/go-shellquote",
+			"Rev": "d8ec1a69a250a17bb0e419c386eac1f3711dc142"
+		}
+	]
+}

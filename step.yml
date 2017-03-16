@@ -11,12 +11,38 @@ project_type_tags:
   - ios
 type_tags:
   - test
-is_requires_admin_user: true
+is_requires_admin_user: false
 is_always_run: false
 is_skippable: false
-dependencies: []
-run_if: ""
+deps:
+  brew:
+  - name: go
+  apt_get:
+  - name: golang
+    bin_name: go
+toolkit:
+  go:
+    package_name: github.com/bitrise-steplib/steps-xamarin-test-cloud-for-calabash-ios
 inputs:
+  - work_dir: 
+    opts:
+      title: "Directory of your calabash features"
+      description: |-
+        Path to the directory, which contains your calabash features directory.
+
+        For emxaple:
+        If calabash features directory path is: `CreditCardValidator.iOS/features`,  
+        then work_dir should be: `CreditCardValidator.iOS`
+      is_required: true
+  - gem_file_path: $work_dir/Gemfile
+    opts:
+      title: "Gemfile path"
+      description: |
+        Path to the Gemfile which contains calabash-cucumber gem.
+
+        If Gemfile not exist or does not contain calabash-cucumber gem:
+
+        - if `calabash_cucumber_version` input not specified, latest version will be used
   - ipa_path: $BITRISE_IPA_PATH
     opts:
       title: IPA path
