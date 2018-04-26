@@ -1,3 +1,5 @@
+**DEPRECATED**: please use [App Center upload and schedule tests](https://github.com/bitrise-steplib/steps-appcenter-test) instead!
+
 # Xamarin Test Cloud for Calabash iOS Step
 
 ## How to use this Step
